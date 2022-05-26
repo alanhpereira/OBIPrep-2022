@@ -10,7 +10,6 @@ void propagate(int idx,int l, int r){
         lazy[idx] = 0;
     } 
     if(!lazy[idx]) return;
-    printf("%d %d %d\n",idx, seg[idx],lazy[idx]);
     lazy[2*idx] += lazy[idx];
     lazy[2*idx+1] += lazy[idx];
     lazy[idx] = 0;
