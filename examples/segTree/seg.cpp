@@ -3,6 +3,8 @@
 
 int seg[4*MAX];
 int vec[MAX];
+int idxl[4*MAX],idxr[4*MAX];
+int midx;
 
 void update(int idx, int l, int r, int i, int v){
     if(l > i || r < i) return;
@@ -23,9 +25,25 @@ int query(int idx, int l, int r, int i, int j){
     return query(2 * idx, l, mid , i, j) + query(2 * idx +1, mid+1, r, i, j); 
 }
 
+void printRange(int idx, int l, int r){
+    idxl[idx]=l;
+    idxr[idx]=r;
+    if(idx> midx) midx = idx;
+    if(l==r)return;
+    int mid = (l + r) / 2; 
+    printRange(2*idx, l,mid);
+    printRange(2*idx+1, mid+1,r);
+}
+
 int main(){
     int n,q;
     scanf("%d",&n);
+    for(int i = 1; i<= n ; i++){
+        midx = 0;
+        printRange(1,1,i);
+        printf("n: %d, idxMax: %d\n",i,midx);
+    }
+    /*
     for(int i = 1; i <= n ;i++){
         scanf("%d", &vec[i]);
         update(1,1,n,i,vec[i]);
@@ -41,6 +59,6 @@ int main(){
 
             printf("%d\n",query(1,1,n,a,b));
         }
-    }
+    }*/
     return 0;
 }
