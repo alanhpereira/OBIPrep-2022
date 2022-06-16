@@ -26,7 +26,7 @@ int main(){
     for(int i = 0 ; i < 3; i++){
         scanf(" %c %c", &f, &n);
         pe += pontos(f, n, nd);
-    }
+    }   
     if(pl > pe){
         printf("Luana\n");
     }
