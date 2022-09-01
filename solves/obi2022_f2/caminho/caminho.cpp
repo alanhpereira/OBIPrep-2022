@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define MAX 112345
+#define MAX 512345
 
 int v[MAX];
 
