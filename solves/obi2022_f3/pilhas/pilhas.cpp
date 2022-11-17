@@ -1,20 +1,22 @@
 #include <stdio.h>
 #define MAX 512
 #define INF 112345678
-#define min(a, b) ((a < b) ? (a) : (b));
-#define max(a, b) ((a > b) ? (a) : (b));
+#define min(a, b) ((a < b) ? (a) : (b))
+#define max(a, b) ((a > b) ? (a) : (b))
 
 int mem[MAX][MAX];
 int freq[MAX];
 
 int dp(int i, int k){
     if(mem[i][k] != -1) return mem[i][k];
+
     if(i == 0) return mem[i][k] = 0;
     if(k == 0) return mem[i][k] = INF;
     mem[i][k] = INF;
     int sum = 0;
     for(int j = i; j >= 0; j--){
         sum += (i - j) * (freq[j]);
+        //'printf("i %d, j %d, k %d, sum: %d, c: %d\n", i, j,  k, sum, dp(j - 1, k - 1));
         mem[i][k] = min(mem[i][k], dp(j - 1, k - 1) + sum);
     }
     return mem[i][k];
